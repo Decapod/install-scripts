@@ -9,7 +9,6 @@ else
 fi
 
 ./decapod-apt.sh $OPERATION
-./decapod-gphoto.sh $OPERATION
 ./decapod-ocropus.sh $OPERATION
 ./decapod-decapod.sh $OPERATION
 

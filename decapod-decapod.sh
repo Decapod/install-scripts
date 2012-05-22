@@ -13,7 +13,7 @@
 DECAPOD_MODULES="libtiff-tools imagemagick"
 CHERRYPY_PKG_NAME="cherrypy-3.2.2"
 GENPDF_PKG_NAME="decapod-genpdf"
-DECAPOD_NAME="decapod-0.5a"
+DECAPOD_NAME="decapod-0.5"
 DECAPOD_VERSION=$(echo $DECAPOD_NAME | sed -e 's/.*-//')
 
 if [ "$1" = "remove" ]; then

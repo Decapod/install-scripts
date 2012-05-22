@@ -12,8 +12,8 @@
 SCM='cvs mercurial subversion'
 BUILDS="scons autoconf"
 SYSTEM="hardinfo hwinfo checkinstall valgrind"
-C_LIBS="libtool gettext libusb-dev libpopt-dev libjpeg62-dev"
-PYTHON_LIBS="swig python-tk python-numpy python-imaging python-scipy python-matplotlib python-reportlab python-opencv python-gnome2 python-simplejson"
+C_LIBS="libtool gettext libusb-dev libpopt-dev libjpeg62-dev fontforge fontforge-extras autotrace potrace"
+PYTHON_LIBS="swig python-tk python-numpy python-imaging python-scipy python-matplotlib python-reportlab python-opencv python-gnome2 python-simplejson python-fontforge"
 
 if [ "$1" = "remove" ]; then
 	OPERATION=$1

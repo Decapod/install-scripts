@@ -1,0 +1,21 @@
+diff -r 55ac24199968 ubuntu-packages
+--- a/ubuntu-packages	Wed Mar 24 04:13:37 2010 -0700
++++ b/ubuntu-packages	Thu Jun 14 10:38:49 2012 -0700
+@@ -1,13 +1,13 @@
+ apt-get install \
+     build-essential imagemagick \
+-    tesseract-ocr tesseract-ocr-dev \
+-    libpng12-dev libjpeg62-dev libtiff4-dev libgif-dev \
++    tesseract-ocr libtesseract-dev \
++    libpng12-dev libjpeg8-dev libtiff4-dev libgif-dev \
+     libsdl-gfx1.2-dev libsdl-image1.2-dev libsdl1.2-dev \
+     libavcodec-dev libavdevice-dev libavformat-dev libavutil-dev \
+     libavfilter-dev \
+-    tesseract-ocr-dev libleptonica-dev \
++    libtesseract-dev libleptonica-dev \
+     libgsl0-dev libblas-dev \
+     libsqlite3-dev\
+-    python-dev swig1.3 zlib1g-dev
++    python-dev swig2.0 swig zlib1g-dev
+ 
+     # liblapack-dev libatlas-base-dev

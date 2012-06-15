@@ -1,0 +1,24 @@
+diff -r 629fcf40854d SConstruct
+--- a/SConstruct	Wed Mar 24 04:13:37 2010 -0700
++++ b/SConstruct	Thu Jun 14 18:12:33 2012 -0700
+@@ -61,7 +61,8 @@
+ 
+ assert conf.CheckLibWithHeader('png', 'png.h', 'C', 'png_byte;', 1),"please install: libpng12-dev"
+ assert conf.CheckLibWithHeader('jpeg', 'jconfig.h', 'C', 'jpeg_std_error();', 1),"please install: libjpeg62-dev"    
+-assert conf.CheckLibWithHeader('tiff', 'tiff.h', 'C', 'inflate();', 1), "please install: libtiff4-dev"
++assert conf.CheckLibWithHeader('z', 'zlib.h', 'C', 'inflate;', 1), "please install: zlib"
++assert conf.CheckLibWithHeader('tiff', 'tiff.h', 'C', 'TIFFOpen();', 1), "please install: libtiff4-dev"
+ 
+ ### check for optional parts
+ 
+diff -r 629fcf40854d ubuntu-packages
+--- a/ubuntu-packages	Wed Mar 24 04:13:37 2010 -0700
++++ b/ubuntu-packages	Thu Jun 14 18:12:33 2012 -0700
+@@ -1,6 +1,6 @@
+ apt-get install \
+     build-essential imagemagick \
+-    libpng12-dev libjpeg62-dev libtiff4-dev libgif-dev \
++    libpng12-dev libjpeg8-dev libtiff4-dev libgif-dev \
+     libsdl-gfx1.2-dev libsdl-image1.2-dev libsdl1.2-dev \
+     libavcodec-dev libavdevice-dev libavformat-dev libavutil-dev \
+     libavfilter-dev \

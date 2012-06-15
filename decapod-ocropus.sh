@@ -10,6 +10,7 @@
 
 OCROPUS_TAG="ocropus-0.4.4"
 OCROPUS_VERSION=$(echo $OCROPUS_TAG | sed -e 's/.*-//')
+UBUNTU_VERSION=$(lsb_release -rs)
 if [ "$1" = "remove" ]; then
 	OPERATION=$1
 else
@@ -25,6 +26,11 @@ clone_and_install_ocropus_lib() {
 	else
 		hg clone -r $OCROPUS_TAG $1 $2
 		cd $2
+        # if ubuntu 12.04, apply patch
+        if [ "$UBUNTU_VERSION" == "12.04" ]; then
+            echo "patching ${2} to work in Ubuntu 12.04"
+            hg import "../../../ubuntu-12.04-patches/${2}-ubuntu-12.04.patch"
+        fi
 		sh ubuntu-packages # TODO: This OCRopus-specific script requires user intervention. Replace it or fix it.
 		checkinstall -D -y --nodoc --pkgname $2 --pkgversion $OCROPUS_VERSION scons -j 4 sdl=1 install
 		cd ..

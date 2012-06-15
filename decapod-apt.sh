@@ -13,7 +13,7 @@
 SCM='mercurial'
 BUILDS="scons"
 SYSTEM="checkinstall"
-C_LIBS="libjpeg62-dev fontforge fontforge-extras autotrace potrace"
+C_LIBS="fontforge fontforge-extras autotrace potrace"
 PYTHON_LIBS="python-numpy python-imaging python-scipy python-scipy-dbg python-matplotlib python-reportlab python-simplejson python-fontforge python-nose"
 
 if [ "$1" = "remove" ]; then

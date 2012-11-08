@@ -11,7 +11,7 @@
 
 . ./_shared-utils.sh
 
-DECAPOD_MODULES="libtiff-tools imagemagick"
+DECAPOD_MODULES="libtiff-tools imagemagick gphoto2"
 CHERRYPY_PKG_NAME="cherrypy-3.2.2"
 GENPDF_PKG_NAME="decapod-genpdf"
 DECAPOD_NAME="decapod-0.6"

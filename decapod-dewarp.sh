@@ -11,7 +11,7 @@
 
 . ./_shared-utils.sh
 
-DEWARP_MODULES="libtiff-tools imagemagick"
+DEWARP_MODULES="libtiff-tools imagemagick cmake"
 
 OPENCV_VERSION=2.4.1
 OPENCV_PKG_NAME=OpenCV-$OPENCV_VERSION

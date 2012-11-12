@@ -10,10 +10,10 @@
 ### Install Decapod Dewarping
 
 # Pull out Martin's dewarping branch
-# TODO: Removed this section once Martin's branch is committed into decapod.googlecode.com
-cd ..
-hg clone https://bitbucket.org/mkraemer/decapod-dewarping decapod-dewarping
-cd install-scripts
+# TODO: Remove this section once Martin's branch is committed into decapod.googlecode.com
+#cd ..
+#hg clone https://bitbucket.org/mkraemer/decapod-dewarping decapod-dewarping
+#cd install-scripts
 
 # Start of dewarping installation
 . ./_shared-utils.sh
@@ -53,13 +53,13 @@ else
     checkinstall -D -y --nodoc --pkgname $OPENCV_PKG_NAME --pkgversion $OPENCV_VERSION make install
 fi
 
-cd ../../
-
 # Install pyflann
 if [ "$1" = "remove" ]; then
     uninstall_dpkg $FLANN_PKG_NAME
-#    rm -r /usr/local/lib/python2.7/dist-packages/pyflann
+    rm -r ../../decapod-dewarping/pyflann
 else
+    cd ../../
+
     git clone git://github.com/mariusmuja/flann.git flann
     cd flann
     git checkout -b $FLANN_PKG_NAME c4dce0ee7c705ddd6965ef43a066c3a8b02c47bc
@@ -71,12 +71,13 @@ else
 fi
 
 # Install vlfeat
-cd ../..
-
 if [ "$1" = "remove" ]; then
     rm /usr/local/bin/libvl.so
     rm /usr/local/bin/sift
+    ldconfig
 else
+    cd ../..
+
     git clone https://github.com/vlfeat/vlfeat.git
     cd vlfeat
     git checkout -b v$VLFEAT_VERSION
@@ -84,6 +85,6 @@ else
     find bin -name "libvl.so" -exec cp {} /usr/local/bin/. \;
     find bin -name "sift" -exec cp {} /usr/local/bin/. \;
     ldconfig
-    cd ..
+    cd ../..
 fi
 

@@ -9,9 +9,16 @@
 
 ### Install Decapod Dewarping
 
+# Pull out Martin's dewarping branch
+# TODO: Removed this section once Martin's branch is committed into decapod.googlecode.com
+cd ..
+hg clone https://bitbucket.org/mkraemer/decapod-dewarping decapod-dewarping
+cd install-scripts
+
+# Start of dewarping installation
 . ./_shared-utils.sh
 
-DEWARP_MODULES="libtiff-tools imagemagick cmake"
+DEWARP_MODULES="libtiff-tools imagemagick cmake git"
 
 OPENCV_VERSION=2.4.1
 OPENCV_PKG_NAME=OpenCV-$OPENCV_VERSION
@@ -60,10 +67,12 @@ else
     cd build
     cmake ..
     make
-    checkinstall -D -y --nodoc --pkgname $FLANN_PKG_NAME --pkgversion $FLANN_VERSION make install; cp -r /usr/local/lib/python2.7/dist-packages/pyflann ../../../decapod-dewarping/.
+    checkinstall -D -y --nodoc --pkgname $FLANN_PKG_NAME --pkgversion $FLANN_VERSION make install; cp -r /usr/local/lib/python2.7/dist-packages/pyflann ../../../../decapod-dewarping/.
 fi
 
 # Install vlfeat
+cd ../..
+
 if [ "$1" = "remove" ]; then
     rm /usr/local/bin/libvl.so
     rm /usr/local/bin/sift
@@ -76,5 +85,5 @@ else
     find bin -name "sift" -exec cp {} /usr/local/bin/. \;
     ldconfig
     cd ..
-    rm -rf vlfeat
 fi
+

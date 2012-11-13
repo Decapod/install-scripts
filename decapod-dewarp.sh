@@ -44,6 +44,7 @@ if [ "$1" = "remove" ]; then
 else
     wget http://downloads.sourceforge.net/project/opencvlibrary/opencv-unix/$OPENCV_VERSION/$OPENCV_PKG_NAME.tar.bz2
     tar -xvf $OPENCV_PKG_NAME.tar.bz2
+    rm $OPENCV_PKG_NAME.tar.bz2
     cd $OPENCV_PKG_NAME
     mkdir build
     cd build
@@ -51,6 +52,8 @@ else
     make
 
     checkinstall -D -y --nodoc --pkgname $OPENCV_PKG_NAME --pkgversion $OPENCV_VERSION make install
+    cd ../..
+    rm -rf $OPENCV_PKG_NAME
 fi
 
 # Install pyflann
@@ -58,8 +61,6 @@ if [ "$1" = "remove" ]; then
     uninstall_dpkg $FLANN_PKG_NAME
     rm -r ../../decapod-dewarping/pyflann
 else
-    cd ../../
-
     git clone git://github.com/mariusmuja/flann.git flann
     cd flann
     git checkout -b $FLANN_PKG_NAME c4dce0ee7c705ddd6965ef43a066c3a8b02c47bc
@@ -68,6 +69,8 @@ else
     cmake ..
     make
     checkinstall -D -y --nodoc --pkgname $FLANN_PKG_NAME --pkgversion $FLANN_VERSION make install; cp -r /usr/local/lib/python2.7/dist-packages/pyflann ../../../../decapod-dewarping/.
+    cd ../../
+    rm -rf flann
 fi
 
 # Install vlfeat
@@ -76,15 +79,14 @@ if [ "$1" = "remove" ]; then
     rm /usr/local/bin/sift
     ldconfig
 else
-    cd ../..
-
     git clone https://github.com/vlfeat/vlfeat.git
     cd vlfeat
     git checkout -b v$VLFEAT_VERSION
     make
-    find bin -name "libvl.so" -exec cp {} /usr/local/bin/. \;
+    find bin -name "libvl.so" -exec cp {} /usr/local/lib/. \;
     find bin -name "sift" -exec cp {} /usr/local/bin/. \;
     ldconfig
-    cd ../..
+    cd ..
+    rm -rf vlfeat
 fi
 

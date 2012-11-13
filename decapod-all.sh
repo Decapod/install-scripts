@@ -11,6 +11,6 @@ fi
 ./decapod-apt.sh $OPERATION
 ./decapod-ocropus.sh $OPERATION
 ./decapod-decapod.sh $OPERATION
+./decapod-dewarp.sh $OPERATION
 
-cd ..
 rm -rf build

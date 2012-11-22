@@ -7,18 +7,12 @@
 # You may obtain a copy of the ECL 2.0 License and BSD License at
 # https://source.fluidproject.org/svn/LICENSE.txt
 
-### Install Decapod Dewarping
-
-# Pull out Martin's dewarping branch
-# TODO: Remove this section once Martin's branch is committed into decapod.googlecode.com
-#cd ..
-#hg clone https://bitbucket.org/mkraemer/decapod-dewarping decapod-dewarping
-#cd install-scripts
+## Install Decapod Dewarping
 
 # Start of dewarping installation
 . ./_shared-utils.sh
 
-DEWARP_MODULES="libtiff-tools imagemagick cmake git"
+DEWARP_MODULES="libtiff-tools imagemagick cmake git python-wxgtk2.8"
 
 OPENCV_VERSION=2.4.1
 OPENCV_PKG_NAME=OpenCV-$OPENCV_VERSION

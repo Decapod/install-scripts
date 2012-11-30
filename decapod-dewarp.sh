@@ -15,13 +15,14 @@
 DEWARP_MODULES="libtiff-tools imagemagick cmake git python-wxgtk2.8"
 
 OPENCV_VERSION=2.4.1
-OPENCV_PKG_NAME=OpenCV-$OPENCV_VERSION
+OPENCV_BRANCH=OpenCV-$OPENCV_VERSION
+OPENCV_PKG_NAME=OpenCV
 
 FLANN_VERSION=1.7.1
-FLANN_PKG_NAME=flann-$FLANN_VERSION
+FLANN_BRANCH=flann-$FLANN_VERSION
+FLANN_PKG_NAME=flann
 
 VLFEAT_VERSION=0.9.16
-VLFEAT_PKG_NAME=vlfeat-$VLFEAT_VERSION
 
 if [ "$1" = "remove" ]; then
     OPERATION=$1
@@ -36,10 +37,10 @@ install_packages $DEWARP_MODULES
 if [ "$1" = "remove" ]; then
     uninstall_dpkg $OPENCV_PKG_NAME
 else
-    wget http://downloads.sourceforge.net/project/opencvlibrary/opencv-unix/$OPENCV_VERSION/$OPENCV_PKG_NAME.tar.bz2
-    tar -xvf $OPENCV_PKG_NAME.tar.bz2
-    rm $OPENCV_PKG_NAME.tar.bz2
-    cd $OPENCV_PKG_NAME
+    wget http://downloads.sourceforge.net/project/opencvlibrary/opencv-unix/$OPENCV_VERSION/$OPENCV_BRANCH.tar.bz2
+    tar -xvf $OPENCV_BRANCH.tar.bz2
+    rm $OPENCV_BRANCH.tar.bz2
+    cd $OPENCV_BRANCH
     mkdir build
     cd build
     cmake -D WITH_TBB=ON -D BUILD_NEW_PYTHON_SUPPORT=ON -D WITH_V4L=ON -D INSTALL_C_EXAMPLES=ON -D INSTALL_PYTHON_EXAMPLES=ON -D BUILD_EXAMPLES=ON -D WITH_QT=ON -D WITH_OPENGL=ON ..
@@ -47,7 +48,7 @@ else
 
     checkinstall -D -y --nodoc --pkgname $OPENCV_PKG_NAME --pkgversion $OPENCV_VERSION make install
     cd ../..
-    rm -rf $OPENCV_PKG_NAME
+    rm -rf $OPENCV_BRANCH
 fi
 
 # Install pyflann
@@ -57,7 +58,7 @@ if [ "$1" = "remove" ]; then
 else
     git clone git://github.com/mariusmuja/flann.git flann
     cd flann
-    git checkout -b $FLANN_PKG_NAME c4dce0ee7c705ddd6965ef43a066c3a8b02c47bc
+    git checkout -b $FLANN_BRANCH c4dce0ee7c705ddd6965ef43a066c3a8b02c47bc
     mkdir build
     cd build
     cmake ..
